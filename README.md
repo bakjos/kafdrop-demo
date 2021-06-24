@@ -59,9 +59,9 @@ docker run -t --rm \
 Create the Kafka connect source connector using debezium
 
 ```bash
- curl -i -X POST -H "Accept:application/json" \ 
- -H "Content-Type:application/json" localhost:8083/connectors/ \
- -d '{"name":"postgres-resources-test","config":{"connector.class":"io.debezium.connector.postgresql.PostgresConnector","tasks.max":"1","offset.flush.timeout.ms":"30000","database.hostname":"postgresql","database.port":"5432","database.user":"root","database.dbname":"bend","database.server.name":"connect","plugin.name":"pgoutput","table.include.list":"public.resources","key.converter":"io.confluent.connect.avro.AvroConverter","value.converter":"io.confluent.connect.avro.AvroConverter","schema.compatibility":"BACKWARD","locale":"en_US","timezone":"UTC","timestamp.field":"updated_at","key.converter.schema.registry.url":"http://schema-registry:8081""value.converter.schema.registry.url":"http://schema-registry:8081", "heartbeat.interval.ms": "60000"}}',
+curl -i -X POST -H "Accept:application/json" \
+-H "Content-Type:application/json" localhost:8083/connectors/ \
+-d '{"name":"postgres-resources-test","config":{"connector.class":"io.debezium.connector.postgresql.PostgresConnector","tasks.max":"1","offset.flush.timeout.ms":"30000","database.hostname":"postgresql","database.port":"5432","database.user":"root","database.dbname":"bend","database.server.name":"connect","plugin.name":"pgoutput","table.include.list":"public.resources","key.converter":"io.confluent.connect.avro.AvroConverter","value.converter":"io.confluent.connect.avro.AvroConverter","schema.compatibility":"BACKWARD","locale":"en_US","timezone":"UTC","timestamp.field":"updated_at","key.converter.schema.registry.url":"http://schema-registry:8081","value.converter.schema.registry.url":"http://schema-registry:8081"}}'
 ```
 
 
@@ -70,7 +70,7 @@ Create a sink connector to process all the data
 ```bash
  curl -i -X POST -H "Accept:application/json" \ 
  -H "Content-Type:application/json" localhost:8083/connectors/ \
- -d '{"name":"elasticsearch-sink","config":{"connector.class":"io.confluent.connect.elasticsearch.ElasticsearchSinkConnector","connection.url":"http://elasticsearch:9200","key.ignore":"true","topics":"connect.public.resources","key.converter":"io.confluent.connect.avro.AvroConverter","value.converter":"io.confluent.connect.avro.AvroConverter","key.converter.schema.registry.url":"http://schema-registry:8081","value.converter.schema.registry.url":"http://schema-registry:8081","behavior.on.null.values":"DELETE"}}
+ -d '{"name":"elasticsearch-sink","config":{"connector.class":"io.confluent.connect.elasticsearch.ElasticsearchSinkConnector","connection.url":"http://elasticsearch:9200","key.ignore":"true","topics":"connect.public.resources","key.converter":"io.confluent.connect.avro.AvroConverter","value.converter":"io.confluent.connect.avro.AvroConverter","key.converter.schema.registry.url":"http://schema-registry:8081","value.converter.schema.registry.url":"http://schema-registry:8081","behavior.on.null.values":"DELETE"}}'
 ```
 
 # Cleaning up you docker containers
