@@ -48,7 +48,7 @@ And it can also be used to consume from any topic
 
 ```bash
 docker run -t --rm \
-      --network kafdrop-demo_default \
+      --network kafkadrop_default \
       confluentinc/cp-kafkacat \
       kafkacat \ 
       -C -v -b kafka:29092 -t events -s avro -r "http://schema-registry:8081"
